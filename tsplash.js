@@ -22,6 +22,9 @@ class TeeSplash{
         ['border-radius','10em'],
         ['margin-left','45%']
     ]
+    _wait_style  = "dots"
+    _wait_interval = null
+    _waiting_dots = 1
     _splash_type = 'logo' 
 
 
@@ -31,19 +34,22 @@ class TeeSplash{
             this.splashLogoStyle = this.splashLogoStyle ? this.splashLogoStyle : this.createSplashLogoStyle() 
         }
     }
-
     Splash(){
         this.assignSplashElemStyles()
         if(this._splash_type=='logo'){
             this.splash.appendChild(this.splashLogo)
+            this.splash.appendChild(this.waitBox)
             document.body.appendChild(this.splash)
         }
+        this.waiting()
     }
-
+    
     UnSplash(){
+        this.stop_waiting()
         document.body.removeChild(this.splash)
-    }
 
+    }
+    
     setStyleAttr(attr,val){
         this.styles.push(
             [attr,val]
@@ -92,6 +98,19 @@ class TeeSplash{
         return this.splashStyle
     }
 
+    createWaitBox(){
+        this.waitBox = document.createElement('span')
+        this.waitBox.classList.add('TeeSplashWaiter')
+        this.waitBox.style.display='flex'
+        this.waitBox.style.justifyContent='center'
+        this.waitBox.style.flexDirection='row'
+        this.waitBox.style.height='5vh'
+        this.waitBox.style.fontSize='10em'
+        this.waitBox.style.margin='0'  
+        this.waitBox.style.padding='0'    
+        this.waitBox.style.color='gray'
+    }
+
     createSplashLogoStyle(){
         this.splashLogoStyle = document.createElement('style')
         this.assignSplashLogoStyles()
@@ -102,6 +121,7 @@ class TeeSplash{
         this.splash = document.createElement('section')
         this.splash.classList.add('TeeSplash')
         this.createSplashElemStyle()
+        this.createWaitBox()
         return this.splash
     }
 
@@ -115,6 +135,30 @@ class TeeSplash{
 
     addSplashLogo(src){
         this.splashLogoSrc = src
+    }
+
+    waitingDots(){
+        this.waitBox.innerText = ''
+        if(this._waiting_dots > 3) this._waiting_dots = 0
+        for(let i=0;i<this._waiting_dots;i++){
+            this.waitBox.innerText+= `.`
+        }
+        this._waiting_dots++
+    }
+
+    waiting(){
+        if(this._wait_style == 'dots'){
+            this._wait_interval = setInterval(
+                ()=>{
+                    this.waitingDots()
+                },500
+            )
+        }
+    }
+    stop_waiting(){
+        clearInterval(
+            this._wait_interval
+        )
     }
 
 
