@@ -82,6 +82,7 @@ class TeeSplash{
             }
         )
         this.splashLogoStyle.innerText += `}`
+        this.splashLogo.src = this.splashLogoSrc
         this.splash.insertBefore(this.splashLogoStyle,this.splash.firstChild)
     }
 
@@ -105,10 +106,15 @@ class TeeSplash{
     }
 
     createSplashLogo(){
+        this.splashLogoSrc = ''
         this.splashLogo = document.createElement('img')
         this.splashLogo.classList.add('TeeSplashLogo')
         this.createSplashLogoStyle()
         return this.splashLogo
+    }
+
+    addSplashLogo(src){
+        this.splashLogoSrc = src
     }
 
 

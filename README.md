@@ -23,6 +23,15 @@
 ```
 
 
+## Assigning a logo to the Splash | Intégrer un logo au Splash
+
+*The __addSplashLogo__ allows us to define the path of the logo used as illustrator || La methode __addSplashLogo__ nous permet de définir l'adresse du logo utilisé comme illustratif*
+```
+    Splash.addSplashLogo(imgpath) //imgpath is the path to the picture || imgpath est le chemin vers l'image
+```
+
+
+
 ## Displaying the splash newly created || Afficher le splash sur la page
 
 ```
