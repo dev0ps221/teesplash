@@ -19,7 +19,7 @@
 ## Creating a splash element || Créer un élément teesplash sur la page
 
 ```
-    const Splash = new Splash()
+    const Splash = new TeeSplash()
 ```
 
 
