@@ -6,13 +6,22 @@ class TeeSplash{
     styles = [
         ['position','absolute'],
         ['top','0'],
+        ['z-index','1000'],
         ['left','0'],
+        ['background','white'],
         ['width','100vw'],
         ['height','100vh'],
         ['display','flex'],
         ['flex-direction','column'],
         ['justify-content','center'],
         ['text-align','center']
+    ]
+    mStyles = [
+    ]
+    mlogoStyles = [
+        ['width','30%'],
+        ['height','15%'],
+        ['margin-left','35%']
     ]
     logoStyles = [
         ['display','flex'],
@@ -76,18 +85,51 @@ class TeeSplash{
         if(this._splash_type=='logo'){
             this.assignSplashLogoStyles()
         }
+        this.assignSplashElemMStyles()
+        this.splash.insertBefore(this.splashStyle,this.splash.firstChild)
+    }
+
+    assignSplashElemMStyles(){
+        this.configure()
+        this.splashStyle.innerText += `@media screen and (max-width:997px){\n`
+        this.splashStyle.innerText += `\n\t.TeeSplash{\n`
+        this.mStyles.forEach(
+            style=>{
+                this.splashStyle.innerText +=`${style[0]}:${style[1]};\n\t\t`
+            }
+        )
+        this.splashStyle.innerText += `\n\t}`
+        if(this._splash_type=='logo'){
+            this.assignSplashLogoMStyles()
+        }
+        this.splashStyle.innerText += `\n}`
         this.splash.insertBefore(this.splashStyle,this.splash.firstChild)
     }
 
     assignSplashLogoStyles(){
         this.configure()
-        this.splashLogoStyle.innerText = `.TeeSplashLogo{`
+        this.splashLogoStyle.innerText += `.TeeSplashLogo{`
         this.logoStyles.forEach(
             style=>{
                 this.splashLogoStyle.innerText =`${this.splashLogoStyle.innerText}${style[0]}:${style[1]};\n\t`
             }
         )
         this.splashLogoStyle.innerText += `}`
+        this.splashLogo.src = this.splashLogoSrc
+        this.splash.insertBefore(this.splashLogoStyle,this.splash.firstChild)
+    }
+
+    assignSplashLogoMStyles(){
+        this.configure()
+
+        this.splashLogoStyle.innerText += `@media screen and (max-width:997px){\n`
+        this.splashLogoStyle.innerText += `\n\t.TeeSplashLogo{`
+        this.mlogoStyles.forEach(
+            style=>{
+                this.splashLogoStyle.innerText +=`${style[0]}:${style[1]};\n\t`
+            }
+        )
+        this.splashLogoStyle.innerText += `\n\t}`
         this.splashLogo.src = this.splashLogoSrc
         this.splash.insertBefore(this.splashLogoStyle,this.splash.firstChild)
     }
