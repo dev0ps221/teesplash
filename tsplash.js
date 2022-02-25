@@ -16,8 +16,8 @@ class TeeSplash{
     ]
     logoStyles = [
         ['display','flex'],
-        ['width','10vw'],
-        ['height','20vh'],
+        ['width','10%'],
+        ['height','20%'],
         ['background','yellow'],
         ['border-radius','10em'],
         ['margin-left','45%']
