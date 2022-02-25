@@ -7,7 +7,7 @@
 
 # DOWNLOAD
 
-<a href='https://github.com/dev0ps221/teesplash/raw/main/tsplash.js' download='true' target='_blank' >Download TeeSplash Here</a>
+<a href='https://cdn.jsdelivr.net/gh//teesplash/tsplash.js' download='true' target='_blank' >Download TeeSplash Here</a>
 
 
 
